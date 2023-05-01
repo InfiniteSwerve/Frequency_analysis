@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name="frequency analysis",
@@ -7,6 +7,7 @@ setup(
     license="LICENSE",
     description="A helper library for understanding selection effects on transformers grokking modular arithmetic",
     long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
     install_requires=[
         "einops",
         "transformer_lens @ git+https://github.com/neelnanda-io/TransformerLens.git",
