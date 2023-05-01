@@ -1,2 +1,1 @@
-from . import adding_freqs
-from . import plotting
+from .adding_freqs import add_freqs
