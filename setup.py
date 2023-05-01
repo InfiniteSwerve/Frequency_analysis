@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="frequency analysis",
+    name="frequency-analysis",
     version="0.1.0",
     packages=["freq_analysis"],
     license="LICENSE",
