@@ -1,0 +1,12 @@
+README.md
+setup.py
+frequency_analysis/__init__.py
+frequency_analysis/adding_freqs.py
+frequency_analysis/plotting.py
+frequency_analysis/setup.py
+frequency_analysis/test.py
+frequency_analysis.egg-info/PKG-INFO
+frequency_analysis.egg-info/SOURCES.txt
+frequency_analysis.egg-info/dependency_links.txt
+frequency_analysis.egg-info/requires.txt
+frequency_analysis.egg-info/top_level.txt

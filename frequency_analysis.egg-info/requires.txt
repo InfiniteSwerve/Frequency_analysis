@@ -1,0 +1,18 @@
+einops
+transformer_lens@ git+https://github.com/neelnanda-io/TransformerLens.git
+numpy
+torch
+datasets
+transformers
+tqdm
+pandas
+datasets
+wandb
+fancy_einsum
+rich
+accelerate
+
+[dev]
+pytest
+mypy
+pytest-cov
