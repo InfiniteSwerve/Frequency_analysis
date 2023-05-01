@@ -10,17 +10,7 @@ setup(
     install_requires=[
         "einops",
         "transformer_lens @ git+https://github.com/neelnanda-io/TransformerLens.git",
-        "numpy",
         "torch",
-        "datasets",
-        "transformers",
-        "tqdm",
-        "pandas",
-        "datasets",
-        "wandb",
-        "fancy_einsum",
-        "rich",
-        "accelerate",
     ],
     extras_require={"dev": ["pytest", "mypy", "pytest-cov"]},
 )
