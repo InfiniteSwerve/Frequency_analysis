@@ -9,7 +9,7 @@ setup(
     long_description=open("README.md").read(),
     install_requires=[
         "einops",
-        "transformer_lens @ git+https://github.com/neelnanda-io/TransformerLens.git"
+        "transformer_lens @ git+https://github.com/neelnanda-io/TransformerLens.git",
         "numpy",
         "torch",
         "datasets",
