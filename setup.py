@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
-
+setuptools.setup()
 setup(
-    name="frequency-analysis",
+    name="frequency_analysis",
     version="0.1.0",
-    packages=["freq_analysis"],
+    packages=["frequency_analysis"],
     license="LICENSE",
     description="A helper library for understanding selection effects on transformers grokking modular arithmetic",
     long_description=open("README.md").read(),
