@@ -32,7 +32,6 @@ pio.templates['plotly'].layout.xaxis.title.font.size = 20
 pio.templates['plotly'].layout.yaxis.title.font.size = 20
 pio.templates['plotly'].layout.title.font.size = 30
 
-# Import stuff
 import torch
 import einops
 import tqdm.auto as tqdm
@@ -40,8 +39,6 @@ import plotly.express as px
 import numpy as np
 
 from functools import partial
-
-import transformer_lens
 
 import plotly.graph_objects as go
 
@@ -52,6 +49,7 @@ def to_numpy(tensor, flat=False):
         return tensor.flatten().detach().cpu().numpy()
     else:
         return tensor.detach().cpu().numpy()
+
 def imshow(tensor, xaxis=None, yaxis=None, animation_name='Snapshot', **kwargs):
     tensor = torch.squeeze(tensor)
     px.imshow(to_numpy(tensor, flat=False),aspect='auto', 
@@ -65,7 +63,7 @@ imshow_div = partial(imshow, color_continuous_scale='RdBu', color_continuous_mid
 # Presets a bunch of defaults to imshow to make it suitable for showing heatmaps 
 # of activations with x axis being input 1 and y axis being input 2.
 inputs_heatmap = partial(imshow, xaxis='Input 1', yaxis='Input 2', color_continuous_scale='RdBu', color_continuous_midpoint=0.0)
-#Jack-sent line function
+
 def line(x, y=None, hover=None, xaxis='', yaxis='', **kwargs):
     if type(y)==torch.Tensor:
         y = to_numpy(y, flat=True)
@@ -76,7 +74,6 @@ def line(x, y=None, hover=None, xaxis='', yaxis='', **kwargs):
     fig.show()
 
 def lines(lines_list, x=None, mode='lines', labels=None, xaxis='', yaxis='', title = '', log_y=False, hover=None, **kwargs):
-    # Helper function to plot multiple lines
     if type(lines_list)==torch.Tensor:
         lines_list = [lines_list[i] for i in range(lines_list.shape[0])]
     if x is None:
@@ -97,7 +94,7 @@ def lines(lines_list, x=None, mode='lines', labels=None, xaxis='', yaxis='', tit
     fig.show()
 
 
-class ModelCache():
+class ModelAnalysis():
     """
     This class takes a model with training and epoch data and gives several easy graphing utilities for understanding how key representations shift during training of the model 
     """
@@ -141,10 +138,10 @@ class ModelCache():
         #imshow(fourier_basis, xaxis="Input", yaxis="Component", y=fourier_basis_names)
         return fourier_basis, fourier_basis_names
 
-    # Move cos_cube to the device
     def create_cos_cube(self):
         cos_cube = []
         for freq in range(1, self.p//2 + 1):
+            # as in, a + b - c mod p
             a = torch.arange(self.p)[:, None, None].to(self.device)
             b = torch.arange(self.p)[None, :, None].to(self.device)
             c = torch.arange(self.p)[None, None, :].to(self.device)
@@ -186,7 +183,7 @@ class ModelCache():
 
     def get_cos_coeffs(self):
 
-        self.get_metrics(self.model, self.metric_cache, self.get_cos_coeffs, "cos_coeffs")
+        self.get_metrics(self.model, self.metric_cache, self._get_cos_coeffs, "cos_coeffs")
 
     def _get_change_in_fourier_norms(self, where):
         if where == 'embedding':
